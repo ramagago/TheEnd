@@ -10,6 +10,7 @@ import CategoriesAdmin from "./components/CategoriesAdmin";
 import PhotoListAdmin from "./components/PhotoListAdmin";
 import PostEdit from "./components/PostEdit";
 import AdminLogin from "./components/AdminLogin";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/AdminLogin">
             <AdminLogin />
+          </Route>
+          <Route path="*">
+            <Redirect to="/" />
           </Route>
         </Switch>
       </div>

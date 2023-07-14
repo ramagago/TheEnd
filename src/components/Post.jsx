@@ -72,6 +72,7 @@ const Post = () => {
           makeup: makeup,
           makeupLink: makeupLink,
           url,
+          order: Date.now(),
         };
 
         const photosCollectionRef = collection(db, "photos");

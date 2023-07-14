@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
 import "../styles/PhotoList.css";
 
@@ -15,7 +15,11 @@ const PhotoList = () => {
     const fetchData = async () => {
       try {
         const photosCollectionRef = collection(db, "photos");
-        const q = query(photosCollectionRef, where("category", "==", filter));
+        const q = query(
+          photosCollectionRef,
+          where("category", "==", filter),
+          orderBy("order")
+        );
         const querySnapshot = await getDocs(q);
         const photosData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -31,7 +35,7 @@ const PhotoList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [photos, filter]);
 
   return (
     <div className="photo-list-container">

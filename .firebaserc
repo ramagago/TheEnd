@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "the-end-df9fb"
-  }
+    "default": "the-end-df9fb",
+    "TheEnd": "the-end-df9fb"
+  },
+  "targets": {},
+  "etags": {}
 }

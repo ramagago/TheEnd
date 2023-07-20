@@ -1,28 +1,28 @@
 import "./App.css";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/Home";
-import PhotoList from "./components/PhotoList";
-import Post from "./components/Post";
-import PhotoDetails from "./components/PhotoDetails";
-import Admin from "./components/Admin";
-import CategoriesAdmin from "./components/CategoriesAdmin";
-import PhotoListAdmin from "./components/PhotoListAdmin";
-import PostEdit from "./components/PostEdit";
-import AdminLogin from "./components/AdminLogin";
+import Home from "./components/Home/Home";
+import PhotoGallery from "./components/PhotoGallery/PhotoGallery/PhotoGallery";
+import Post from "./components/Admin/Post/Post";
+import PhotoDetails from "./components/PhotoGallery/PhotoDetails/PhotoDetails";
+import Admin from "./components/Admin/Admin";
+import CategoriesAdmin from "./components/Admin/CategoriesAdmin/CategoriesAdmin";
+import PhotoListAdmin from "./components/Admin/PhotoListAdmin/PhotoListAdmin";
+import PostEdit from "./components/Admin/Post/PostEdit";
+import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="app">
+      <Router>
         <Header />
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route path="/PhotoList/:filter">
-            <PhotoList />
+            <PhotoGallery />
           </Route>
           <Route path="/Post">
             <Post />
@@ -39,7 +39,7 @@ function App() {
           <Route path="/PostEdit/:id/:uuid/:filter">
             <PostEdit />
           </Route>
-          <Route path="/photos/:uuid">
+          <Route path="/PhotoDetails/:uuid/:currentFilter">
             <PhotoDetails />
           </Route>
           <Route path="/AdminLogin">
@@ -49,8 +49,8 @@ function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 

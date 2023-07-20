@@ -1,0 +1,34 @@
+.navigation {
+    display: block;
+    position: fixed;
+    width: 100%;
+    z-index: 90;
+    padding-bottom: 30px;
+    top: 75px;
+    background-color:rgba(255, 255, 255, 1);
+    border-bottom: 1px #57575761 solid;
+  }
+    
+    .navigation-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    color: #575757d2; 
+  }
+    
+  .navigation-item {
+      margin: 0 10px;
+      cursor: pointer;
+      text-decoration: none;
+  }
+
+  .navigation-item:hover {
+    color: #bababad2; 
+}
+    
+  .navigation-item.active {
+   color: rgb(182, 77, 77);
+  }

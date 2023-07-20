@@ -1,0 +1,118 @@
+.contact-container {
+    position: relative;
+    height: 330px;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.h2-contact {
+    font-family: 'Quicksand';
+    font-weight: 300;
+    margin: 60px;
+}
+
+.contact-form-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+}
+
+.contact-group {
+    position: relative;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #5757577e;
+    margin:30px;
+}
+
+.input-contact-text:focus + .input-contact-text-label,
+  .input-contact-text:not(:placeholder-shown) + .input-contact-text-label {
+    transform-origin: left top;
+    transform: translateY(-15px) scale(.8);
+  }
+  
+.input-contact-text {
+    font-family: 'Quicksand', sans-serif;
+    height: 40px;
+    border: none;
+    outline: none;
+    width: 250px;
+    padding: 2px 5px;
+    border-bottom: 1px solid #5757577e;
+    resize: none;
+}
+
+.input-contact-text:-webkit-autofill,
+.input-contact-text:-webkit-autofill:hover,
+.input-contact-text:-webkit-autofill:focus,
+.input-contact-text:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+.text-area {
+    height:auto;
+}
+
+.input-contact-text-label{
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    transition: transform .5s, color .3s;
+}
+
+.btn-contact {
+    margin: 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Quicksand';
+    font-weight: 300;
+    border: none;
+    background:none;
+    color: #000000;
+}
+
+.btn-contact:hover {
+    color:#5757577e;
+}
+
+.followus-link-container {
+    padding:60px;
+}
+
+.followus-link {
+    font-size: 15px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    color: #000000;
+    padding: 10px;
+}
+
+.followus-link:hover{
+    color:#5757577e; ;
+}
+
+.followus-link:visited {
+    color: #000000;
+}
+.followus-link:active {
+    color:#5757577e; ;
+}
+.confirmation-message {
+    margin-top: 20px;
+    font-family: 'Quicksand';
+    font-weight: 300;
+}
+
+@media (min-width: 1024px) {  
+    .contact-form-container {
+        flex-direction: row;
+    }
+} 

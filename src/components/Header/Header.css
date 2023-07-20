@@ -1,0 +1,85 @@
+.header-container {
+    display: block;
+    position: fixed;
+    top:0;
+    width: 100vw;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .header-bg-white {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+  .header-hide {
+    display: none;
+}
+  
+.logo-class-1 {
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 3px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+
+  }
+
+  .logo-class-2 {
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 3px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+
+  }
+
+  .admin-btn {
+    font-size: 16px;
+    font-family: "Nunito", sans-serif;
+    position: absolute;
+    right: 10%;
+    top: 35px;
+    transform: translateY(-50%);
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .admin-btn:hover{
+    background-color: white;
+    color: black;
+  }
+
+  .logout-btn {
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    right: 20%;
+    top: 35px;
+    transform: translateY(-50%);
+    color: rgb(255, 255, 255);
+    background: none;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .logout-btn:hover{
+    background-color: white;
+    color: black;
+  }
+
+
+  @media (min-width: 1024px) {
+
+  .header-hide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 75px;
+    } 
+  }

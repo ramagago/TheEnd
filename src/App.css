@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+html, body {
+  transition: scroll-behavior 0.3s ease-in-out;
+  background-color: white;
+}
+body::backdrop {
+  background-color: white;
+}
+
+.app {
+  background-color: white;
+}
 
 a { 
     text-decoration: none;

@@ -1,0 +1,129 @@
+.categories-container {
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+}
+
+.img-container {
+    position: relative;
+    object-fit: cover;
+    height: 100vh;
+    max-width: 100%;
+    transition:0.7s;
+}
+.img-container:hover {
+    opacity: 0.9;
+}
+
+.img-category {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.h2-categories {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1;
+    color: white;
+    position: absolute;
+    bottom: 80px;
+    padding: 30px;
+    font-size: 18px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.fashion {
+    order: 1;
+}
+
+.interior-design {
+    order: 2;
+}
+
+.lifestyle {
+    order:3
+}
+
+@media (min-width: 500px) and (max-width: 1023px) {
+    .fashion {
+        order: 3;
+    }
+    
+    .interior-design {
+        order: 2;
+    }
+    
+    .lifestyle {
+        order:1
+    }
+    .h2-categories {
+        bottom: 40px;
+    }  
+}
+@media (orientation: landscape) {
+
+    /* Estilos para dispositivos en modo paisaje */
+
+    .categories-container {   
+        flex-direction: row;
+        height: 100vh;
+    }
+
+    .img-container {
+        flex-grow: 1;
+        object-fit: cover;
+        height: 100%;
+        max-width: calc(100% / 3);   
+        transition:0.5s;
+        }
+
+        .fashion {
+            order: 2;
+        }
+
+        .interior-design {
+            order: 1;
+        }
+
+        .lifestyle {
+            order:3
+        }
+        .h2-categories {
+            bottom: 20px;
+        }  
+  }
+  
+  /* Estilos para dispositivos con un ancho de pantalla de 769px a 1024px (ordenadores pequeños) */
+
+@media (min-width: 1024px) {  
+    .categories-container {   
+        flex-direction: row;
+        height: 100vh;
+    }
+
+    .img-container {
+    flex-grow: 1;
+    object-fit: cover;
+    height: 100%;
+    max-width: calc(100% / 3);   
+    transition:0.5s;
+    }
+
+    .fashion {
+        order: 2;
+    }
+
+    .interior-design {
+        order: 1;
+    }
+
+    .lifestyle {
+        order:3
+    }
+
+    .h2-categories {
+        bottom: 20px;
+    }  
+  }

@@ -11,13 +11,22 @@
 .admin-login-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
+
+.input-login-container {
+    display: flex;
+    flex-direction: column;
+    color: white;
 }
 
 .login-label {
     font-family: 'Quicksand';
     font-weight: 300;
     color: white;
+    margin: 30px 30px 10px 30px;
 }
 
 .login-input {
@@ -25,7 +34,53 @@
     outline: none;
     width: 250px;
     padding: 2px 5px;
+    margin: 10px 30px 30px 30px;
     background-color: black;
+    font-family: 'Quicksand';
+    font-weight: 300;
     color: white;
+    caret-color: white;
     border-bottom: 1px solid #ffffff;
+}
+
+.login-input:-webkit-autofill,
+.login-input:-webkit-autofill:hover,
+.login-input:-webkit-autofill:focus,
+.login-input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px rgb(0, 0, 0) inset;
+  color: white;
+  -webkit-text-fill-color: white;
+} 
+
+.login-input::selection {
+    background-color: #7a7a7a;
+    color: #000000;
+}
+
+.btn-login {
+    border: none;
+    font-family: 'Quicksand';
+    font-weight: 300;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    background-color: white;
+    padding: 15px 20px;
+    margin: 20px;
+    border-radius: 10px;
+    transition: .3s;
+  
+}
+
+.btn-login:hover {
+    background-color: rgb(91, 91, 91);
+    color: rgb(255, 255, 255);
+    transform: scale(105%);
+}
+
+.login-error-message {
+    color: white;
+    margin: 20px;
+    font-family: 'Quicksand';
+    font-weight: 300;
 }

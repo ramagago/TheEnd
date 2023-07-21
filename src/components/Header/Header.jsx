@@ -17,7 +17,10 @@ const Header = () => {
       ? "logo-class-1"
       : "logo-class-2";
 
-  const headerBgWhite = isHome ? null : "header-bg-white";
+  const headerBgWhite =
+    isHome || isAdmin || isCategoryAdmin || isAdminLogin
+      ? null
+      : "header-bg-white";
   const headerHide = isPhotoDetailsPage ? "header-hide" : null;
 
   const handleLogout = () => {

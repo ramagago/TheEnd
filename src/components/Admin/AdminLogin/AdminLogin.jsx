@@ -7,51 +7,54 @@ import "./AdminLogin.css";
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password) // Utiliza la función 'signInWithEmailAndPassword' pasando el objeto 'auth' como primer argumento
       .then((cred) => {
-        console.log(cred.user);
-        history.push("/AdminLogin");
+        history.push("/Admin");
       })
       .catch((error) => {
-        console.log(error);
+        setError(true);
       });
   };
 
   return (
     <div className="admin-login-container">
       <form className="admin-login-form" onSubmit={handleLogin}>
-        <div>
+        <div className="input-login-container">
           <label className="login-label" htmlFor="username">
             Username:
           </label>
           <input
             className="login-input"
             type="email"
-            // id="username"
             name="username"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
 
-        <div>
+        <div className="input-login-container">
           <label className="login-label" htmlFor="pass">
-            Password (8 characters minimum):
+            Password:
           </label>
           <input
             className="login-input"
             type="password"
-            // id="pass"
             name="password"
             required
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <input type="submit" value="Log in" />
+        {error && (
+          <div className="login-error-message">
+            Invalid username or password.
+          </div>
+        )}
+        <input className="btn-login" type="submit" value="Log in" />
       </form>
     </div>
   );

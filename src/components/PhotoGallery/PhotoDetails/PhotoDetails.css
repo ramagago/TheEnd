@@ -17,15 +17,14 @@
     position: fixed;
     text-align: center;
     z-index: 150;
-    top: 25px;
-    left: 25px;
-
-    }.back-arrow-photo-details:hover {
-        color: rgb(38, 38, 38);
-        background-color: #ededede3;
-    }.back-arrow-photo-details.active {
-        color: rgb(38, 38, 38);
-        background-color: #ededede3;
+    top: 15px;
+    left: 15px; 
+}.back-arrow-photo-details:hover {
+  color: rgb(38, 38, 38);
+  background-color: #ededede3;
+}.back-arrow-photo-details.active {
+  color: rgb(38, 38, 38);
+  background-color: #ededede3;
 }
 
 .photo-container {
@@ -101,6 +100,15 @@
     .gap-photo-details-photo-list {
         height: 140px;
     }
-
- 
+    .back-arrow-photo-details {
+        color: rgb(0, 0, 0);
+        background:none;
+        top: 25px;
+        left: 25px;
+        font-size: 20px;
+        transition: .3s;
+    }.back-arrow-photo-details:hover {
+        background:none;
+transform: scale(1.2);
+    }
   }

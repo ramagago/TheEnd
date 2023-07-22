@@ -102,197 +102,200 @@ const Post = () => {
   };
 
   return (
-    <div className="post-container">
-      <form className="form-container" action="" onSubmit={handleUpload}>
-        <Link to="/Admin" className="back-arrow-post">
-          <FaArrowLeft />
-        </Link>
-        <div className="form-group">
-          <input
-            className="form-input"
-            placeholder=" "
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-          <label className="form-label" htmlFor="title">
-            Title:
-          </label>
-          <span className="form-span"></span>
-        </div>
-        <div className="form-duo-group">
+    <>
+      <Link to="/Admin" className="back-arrow-post">
+        <FaArrowLeft />
+      </Link>
+      <div style={{ height: "75px", marginBottom: "15px" }}></div>
+      <div className="post-container">
+        <form className="form-container" action="" onSubmit={handleUpload}>
           <div className="form-group">
             <input
               className="form-input"
-              id="location"
-              type="text"
               placeholder=" "
-              value={location}
+              id="title"
+              type="text"
+              value={title}
               onChange={(e) => {
-                setLocation(e.target.value);
+                setTitle(e.target.value);
               }}
             />
+            <label className="form-label" htmlFor="title">
+              Title:
+            </label>
+            <span className="form-span"></span>
+          </div>
+          <div className="form-duo-group">
+            <div className="form-group">
+              <input
+                className="form-input"
+                id="location"
+                type="text"
+                placeholder=" "
+                value={location}
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                }}
+              />
 
-            <label className="form-label" htmlFor="location">
-              Location:
-            </label>
+              <label className="form-label" htmlFor="location">
+                Location:
+              </label>
+            </div>
+            <div className="form-group">
+              <input
+                className="form-input"
+                id="location-link"
+                type="text"
+                placeholder=" "
+                value={locationLink}
+                onChange={(e) => {
+                  setLocationLink(e.target.value);
+                }}
+              />
+              <label className="form-label" htmlFor="location-link">
+                Location link:
+              </label>
+            </div>
           </div>
-          <div className="form-group">
-            <input
-              className="form-input"
-              id="location-link"
-              type="text"
-              placeholder=" "
-              value={locationLink}
-              onChange={(e) => {
-                setLocationLink(e.target.value);
-              }}
-            />
-            <label className="form-label" htmlFor="location-link">
-              Location link:
-            </label>
+          <div className="form-duo-group">
+            <div className="form-group">
+              <input
+                className="form-input"
+                id="brand"
+                type="text"
+                placeholder=" "
+                value={brand}
+                onChange={(e) => {
+                  setBrand(e.target.value);
+                }}
+              />
+              <label className="form-label" htmlFor="brand">
+                Brand:
+              </label>
+            </div>
+            <div className="form-group">
+              <input
+                className="form-input"
+                id="brand-link"
+                type="text"
+                placeholder=" "
+                value={brandLink}
+                onChange={(e) => {
+                  setBrandLink(e.target.value);
+                }}
+              />
+              <label className="form-label" htmlFor="brand-link">
+                Brand Link:
+              </label>
+            </div>
           </div>
-        </div>
-        <div className="form-duo-group">
-          <div className="form-group">
-            <input
-              className="form-input"
-              id="brand"
-              type="text"
-              placeholder=" "
-              value={brand}
-              onChange={(e) => {
-                setBrand(e.target.value);
-              }}
-            />
-            <label className="form-label" htmlFor="brand">
-              Brand:
-            </label>
+          <div className="form-duo-group">
+            <div className="form-group">
+              <input
+                className="form-input"
+                id="model"
+                type="text"
+                placeholder=" "
+                value={model}
+                onChange={(e) => {
+                  setModel(e.target.value);
+                }}
+              />
+              <label className="form-label" htmlFor="model">
+                Model
+              </label>
+            </div>
+            <div className="form-group">
+              <input
+                className="form-input"
+                id="model-link"
+                type="text"
+                placeholder=" "
+                value={modelLink}
+                onChange={(e) => {
+                  setModelLink(e.target.value);
+                }}
+              />
+              <label className="form-label" htmlFor="model-link">
+                Model Link
+              </label>
+            </div>
           </div>
-          <div className="form-group">
-            <input
-              className="form-input"
-              id="brand-link"
-              type="text"
-              placeholder=" "
-              value={brandLink}
-              onChange={(e) => {
-                setBrandLink(e.target.value);
-              }}
-            />
-            <label className="form-label" htmlFor="brand-link">
-              Brand Link:
-            </label>
-          </div>
-        </div>
-        <div className="form-duo-group">
-          <div className="form-group">
-            <input
-              className="form-input"
-              id="model"
-              type="text"
-              placeholder=" "
-              value={model}
-              onChange={(e) => {
-                setModel(e.target.value);
-              }}
-            />
-            <label className="form-label" htmlFor="model">
-              Model
-            </label>
-          </div>
-          <div className="form-group">
-            <input
-              className="form-input"
-              id="model-link"
-              type="text"
-              placeholder=" "
-              value={modelLink}
-              onChange={(e) => {
-                setModelLink(e.target.value);
-              }}
-            />
-            <label className="form-label" htmlFor="model-link">
-              Model Link
-            </label>
-          </div>
-        </div>
-        <div className="form-duo-group">
-          <div className="form-group">
-            <input
-              className="form-input"
-              id="makeup"
-              type="text"
-              placeholder=" "
-              value={makeup}
-              onChange={(e) => {
-                setMakeup(e.target.value);
-              }}
-            />
-            <label className="form-label" htmlFor="makeup">
-              Make Up:
-            </label>
-          </div>
-          <div className="form-group">
-            <input
-              className="form-input"
-              id="makeup-link"
-              type="text"
-              placeholder=" "
-              value={makeupLink}
-              onChange={(e) => {
-                setMakeupLink(e.target.value);
-              }}
-            />
+          <div className="form-duo-group">
+            <div className="form-group">
+              <input
+                className="form-input"
+                id="makeup"
+                type="text"
+                placeholder=" "
+                value={makeup}
+                onChange={(e) => {
+                  setMakeup(e.target.value);
+                }}
+              />
+              <label className="form-label" htmlFor="makeup">
+                Make Up:
+              </label>
+            </div>
+            <div className="form-group">
+              <input
+                className="form-input"
+                id="makeup-link"
+                type="text"
+                placeholder=" "
+                value={makeupLink}
+                onChange={(e) => {
+                  setMakeupLink(e.target.value);
+                }}
+              />
 
-            <label className="form-label" htmlFor="makeup-link">
-              Make Up Link:
-            </label>
+              <label className="form-label" htmlFor="makeup-link">
+                Make Up Link:
+              </label>
+            </div>
           </div>
-        </div>
-        <div className="form-duo-group">
-          <div className="form-group form-group-category">
-            <label className="form-label-category" htmlFor="category">
-              Category
-            </label>
-            <select
-              value={category}
-              id="category"
-              onChange={(e) => {
-                setCategory(e.target.value);
-              }}
-            >
-              <option value="fashion">Fashion</option>
-              <option value="interiorDesign">Interior Design</option>
-              <option value="lifestyle">Lifestyle</option>
-            </select>
+          <div className="form-duo-group">
+            <div className="form-group form-group-category">
+              <label className="form-label-category" htmlFor="category">
+                Category
+              </label>
+              <select
+                value={category}
+                id="category"
+                onChange={(e) => {
+                  setCategory(e.target.value);
+                }}
+              >
+                <option value="fashion">Fashion</option>
+                <option value="interiorDesign">Interior Design</option>
+                <option value="lifestyle">Lifestyle</option>
+              </select>
+            </div>
+            <div className="form-group form-group-file">
+              <input
+                className="form-file"
+                type="file"
+                id="foto"
+                onChange={(e) => {
+                  setImageUpload(e.target.files[0]);
+                }}
+              ></input>
+              <label className="form-file-label" htmlFor="foto">
+                {imageUpload ? imageUpload.name : "Choose your file"}
+              </label>
+            </div>
           </div>
-          <div className="form-group form-group-file">
-            <input
-              className="form-file"
-              type="file"
-              id="foto"
-              onChange={(e) => {
-                setImageUpload(e.target.files[0]);
-              }}
-            ></input>
-            <label className="form-file-label" htmlFor="foto">
-              {imageUpload ? imageUpload.name : "Choose your file"}
-            </label>
+          <div className="form-group">
+            <button className="btn-submit" type="submit">
+              Upload Photo
+            </button>
           </div>
-        </div>
-        <div className="form-group">
-          <button className="btn-submit" type="submit">
-            Upload Photo
-          </button>
-        </div>
-        {uploaded && <p className="form-state">Image successfully loaded</p>}
-        {isUploading && <p className="form-state">Uploading image</p>}
-      </form>
-    </div>
+          {uploaded && <p className="form-state">Image successfully loaded</p>}
+          {isUploading && <p className="form-state">Uploading image</p>}
+        </form>
+      </div>
+    </>
   );
 };
 

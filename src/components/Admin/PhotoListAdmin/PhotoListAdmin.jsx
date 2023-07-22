@@ -9,6 +9,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import fetchPhotoList from "../../../utils/fetchPhotoList";
 import { auth, db, storage } from "../../../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
+import Loader from "../../Loader/Loader";
 
 const PhotoListAdmin = () => {
   const history = useHistory();
@@ -90,7 +91,7 @@ const PhotoListAdmin = () => {
               )}
             </>
           )}
-          {isPending && <div>Loading...</div>}
+          {isPending && <Loader />}
         </div>
       </div>
       <div style={{ height: "75px", marginBottom: "15px" }}></div>

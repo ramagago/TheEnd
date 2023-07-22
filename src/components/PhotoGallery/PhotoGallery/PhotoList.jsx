@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./PhotoList.css";
+import Loader from "../../Loader/Loader";
 
 const PhotoList = ({ currentFilter, isPending, error, photos }) => {
   return (
     <div className="photo-list-container">
+      {isPending && <Loader />}
+      {error && <div>Error: {error}</div>}
       <div className="photo-list">
-        {isPending && <div>Loading...</div>}
-        {error && <div>Error: {error}</div>}
         {photos &&
           photos.map((photo) => (
             <Link

@@ -7,6 +7,7 @@ import fetchPhotoDetails from "../../../utils/fetchPhotoDetails";
 import fetchPhotoList from "../../../utils/fetchPhotoList";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Loader from "../../Loader/Loader";
 
 const PhotoDetails = () => {
   const { uuid, currentFilter } = useParams();
@@ -33,7 +34,7 @@ const PhotoDetails = () => {
         <FaArrowLeft />
       </Link>
       <div className="photo-details-container">
-        {isPending && <div>Loading...</div>}
+        {isPending && <Loader />}
         {error && <div>{error}</div>}
         {photo && (
           <article className="photo-container">
@@ -117,7 +118,12 @@ const PhotoDetails = () => {
       </div>
 
       <div className="gap-photo-details-photo-list"></div>
-      <PhotoList isPending={isPending} error={error} photos={photos} />
+      <PhotoList
+        currentFilter={currentFilter}
+        isPending={isPending}
+        error={error}
+        photos={photos}
+      />
       <div style={{ widht: "100%", borderBottom: "solid 1px #57575761" }}></div>
       <Contact />
     </>

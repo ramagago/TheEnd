@@ -1,12 +1,13 @@
 .video-container {
   position: relative; /* Añadido para que el ícono de reproducción esté posicionado correctamente */
   width: 100%;
-  height: 800px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: black;
   overflow: hidden;
+  /* object-fit: cover; */
 }
 
 .video {

@@ -3,6 +3,7 @@ import "./Home.css";
 import Categories from "./Categories/Categories";
 import Contact from "./Contact/Contact";
 import Video from "./Video/Video";
+import Loader from "../Loader/Loader";
 
 const Home = () => {
   const [isPending, setIsPending] = useState(true);
@@ -19,7 +20,8 @@ const Home = () => {
 
   return (
     <div className="home">
-      {isPending && <div>Loading...</div>}
+      {/* <Loader className="loader-home" /> */}
+      {isPending && <Loader />}
       <div>{start && <Categories />}</div>
       <div>{start && <Video />}</div>
       <div>{start && <Contact />}</div>

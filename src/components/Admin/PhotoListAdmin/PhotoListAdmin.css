@@ -84,16 +84,3 @@
 .delete-icon {
     font-size: 30px;
 }
-
-.back-arrow-post {
-    color: black;
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    font-size: 20px;
-    transition: .3s;
-}
-
-.back-arrow-post:hover {
-    transform: scale(1.2);
-}

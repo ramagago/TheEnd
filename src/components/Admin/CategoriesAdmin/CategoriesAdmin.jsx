@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./CategoriesAdmin.css";
 import { auth } from "../../../firebase";
+import { FaArrowLeft } from "react-icons/fa";
 
 const CategoriesAdmin = () => {
   const history = useHistory();
@@ -18,6 +19,9 @@ const CategoriesAdmin = () => {
 
   return (
     <div className="admin-container">
+      <Link to="/Admin" className="back-arrow-admin">
+        <FaArrowLeft />
+      </Link>
       <Link className="btn" to="/PhotoListAdmin/fashion">
         Fashion
       </Link>

@@ -12,15 +12,15 @@ const Header = () => {
   const isAdminLogin = location.pathname === "/AdminLogin";
   const isPhotoDetailsPage = location.pathname.includes("/PhotoDetails");
 
-  const logoClassName =
-    isHome || isAdmin || isCategoryAdmin || isAdminLogin
-      ? "logo-class-1"
-      : "logo-class-2";
 
-  const headerBgWhite =
-    isHome || isAdmin || isCategoryAdmin || isAdminLogin
-      ? null
-      : "header-bg-white";
+  const isDarkBackground =
+    isHome || isAdmin || isCategoryAdmin || isAdminLogin ? true : false;
+
+  const logoClassName = isDarkBackground ? "logo-class-1" : "logo-class-2";
+  const headerBgWhite = isDarkBackground ? null : "header-bg-white";
+  const adminDark = isDarkBackground ? null : "admin-dark";
+
+
   const headerHide = isPhotoDetailsPage ? "header-hide" : null;
 
   const handleLogout = () => {
@@ -56,10 +56,13 @@ const Header = () => {
         </Link>
         {isUserLoggedIn && (
           <>
-            <Link className="admin-btn" to="/Admin">
+            <Link className={`admin-btn ${adminDark}`} to="/Admin">
               Admin
             </Link>
-            <button className="logout-btn" onClick={handleLogout}>
+            <button
+              className={`logout-btn ${adminDark}`}
+              onClick={handleLogout}
+            >
               Logout
             </button>
           </>

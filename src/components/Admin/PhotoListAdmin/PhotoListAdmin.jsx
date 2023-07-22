@@ -50,47 +50,51 @@ const PhotoListAdmin = () => {
   };
 
   return (
-    <div className="list-admin-container">
-      <div className="list-container">
-        <Link to="/Admin" className="back-arrow-post">
-          <FaArrowLeft />
-        </Link>
-        {!isPending && (
-          <>
-            <h3 className="category-title">Fashion</h3>
-            {error && <div>Error: {error}</div>}
-            {photos && (
-              <>
-                {photos.map((photo) => (
-                  <div key={photo.id} className="list-element">
-                    <Link
-                      to={`/PostEdit/${photo.id}/${photo.uuid}/${filter}`}
-                      className="edit-link"
-                    >
-                      <img
-                        className="admin-list-img"
-                        src={photo.url}
-                        alt={photo.title}
-                        style={{ width: "50px" }}
-                      />
-                      <p className="photo-title">{photo.title}</p>
-                    </Link>
+    <>
+      <Link to="/CategoriesAdmin" className="back-arrow-post">
+        <FaArrowLeft />
+      </Link>
+      <div style={{ height: "75px", marginBottom: "15px" }}></div>
+      <div className="list-admin-container">
+        <div className="list-container">
+          {!isPending && (
+            <>
+              <h3 className="category-title">{filter}</h3>
+              {error && <div>Error: {error}</div>}
+              {photos && (
+                <>
+                  {photos.map((photo) => (
+                    <div key={photo.id} className="list-element">
+                      <Link
+                        to={`/PostEdit/${photo.id}/${photo.uuid}/${filter}`}
+                        className="edit-link"
+                      >
+                        <img
+                          className="admin-list-img"
+                          src={photo.url}
+                          alt={photo.title}
+                          style={{ width: "50px" }}
+                        />
+                        <p className="photo-title">{photo.title}</p>
+                      </Link>
 
-                    <div className="btn-list-delete">
-                      <AiFillDelete
-                        className="delete-icon"
-                        onClick={() => handleDelete(photo.id, photo.uuid)}
-                      />
+                      <div className="btn-list-delete">
+                        <AiFillDelete
+                          className="delete-icon"
+                          onClick={() => handleDelete(photo.id, photo.uuid)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </>
-            )}
-          </>
-        )}
-        {isPending && <div>Loading...</div>}
+                  ))}
+                </>
+              )}
+            </>
+          )}
+          {isPending && <div>Loading...</div>}
+        </div>
       </div>
-    </div>
+      <div style={{ height: "75px", marginBottom: "15px" }}></div>
+    </>
   );
 };
 

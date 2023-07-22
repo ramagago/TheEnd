@@ -155,10 +155,11 @@ const PostEdit = () => {
 
   return (
     <div className="post-container">
+      <Link to={`/PhotoListAdmin/${filter}`} className="back-arrow-post">
+        <FaArrowLeft />
+      </Link>
+      <div style={{ height: "75px", marginBottom: "15px" }}></div>
       <form className="form-container" action="" onSubmit={handleUpload}>
-        <Link to={`/PhotoListAdmin/${filter}`} className="back-arrow-post">
-          <FaArrowLeft />
-        </Link>
         <div className="form-group">
           <input
             className="form-input"

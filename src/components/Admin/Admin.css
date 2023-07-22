@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .btn {
@@ -13,17 +14,28 @@
     font-weight: 300;
     text-decoration: none;
     color: black;
-    width: 400px;
+    width: 300px;
     text-align: center;
     background-color: white;
-    padding: 25px 40px;
+    padding: 20px 40px;
     margin: 20px;
-    border-radius: 35px;
-  
+    border-radius: 35px; 
 }
 
 .btn:hover {
     background-color: rgb(187, 187, 187);
     color: rgb(43, 43, 43);
     transform: scale(105%);
+}
+
+.back-arrow-admin {
+    color: rgb(255, 255, 255);
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    font-size: 20px;
+    transition: .3s;
+    z-index: 200;
+}.back-arrow-admin:hover {
+    transform: scale(1.2);
 }

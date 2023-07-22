@@ -6,9 +6,19 @@
   width:100vw;
   background-color: rgb(255, 255, 255);
 }
+
 .back-arrow-photo-list {
-  display: none;
+  color: rgb(0, 0, 0);
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  font-size: 20px;
+  transition: .3s;
+  z-index: 200;
+}.back-arrow-photo-list:hover {
+  transform: scale(1.2);
 }
+
 .photo-list {
   display: block;
   position: relative;
@@ -17,40 +27,21 @@
   columns: 2 140px;
   column-gap: 0.5em;
 }
+
 .photo {
   width: 100%;
   border-radius: 20px;
 }
+
 .photo-list-link.active{
   opacity: 0.5;
 }
 
 @media (orientation: landscape) {
   .photo-list {
-    columns: 3 200px;
+    columns: 4 200px;
   }
 }
-
-@media (min-width: 480px) {
-  .back-arrow-photo-list {
-      display: block;
-      color: white;
-      background-color: #00000025;
-      padding: 15px;
-      border-radius: 50%;
-      position: fixed;
-      top: 13px;
-      left:100px;
-      text-align: center;
-      z-index: 150;
-      top: 25px;
-      left: 25px;
-  
-  }.back-arrow-photo-list.active {
-      color: rgb(38, 38, 38);
-      background-color: #ededede3;
-  }}
-
 
 @media (min-width: 767px) and (max-width: 1023px) {
   .photo-list {
@@ -62,21 +53,5 @@
   .photo-list {
     columns: 5 320px;
   }
-  .back-arrow-photo-list {
-    display: block;
-    color: white;
-    background-color: #00000025;
-    padding: 15px;
-    border-radius: 50%;
-    position: fixed;
-    text-align: center;
-    z-index: 150;
-    top: 13px;
-    left:100px;
-    
-}.back-arrow-photo-list.active {
-    color: rgb(38, 38, 38);
-    background-color: #ededede3;
-}
  }
 

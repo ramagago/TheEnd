@@ -12,6 +12,7 @@ const AdminLogin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    document.body.style.zoom = "1";
     signInWithEmailAndPassword(auth, email, password) // Utiliza la función 'signInWithEmailAndPassword' pasando el objeto 'auth' como primer argumento
       .then((cred) => {
         history.push("/Admin");
@@ -34,6 +35,7 @@ const AdminLogin = () => {
             name="username"
             onChange={(e) => setEmail(e.target.value)}
             required
+            inputMode="text"
           />
         </div>
 

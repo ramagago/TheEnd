@@ -7,7 +7,10 @@
     width:100vw;
     background-color: rgb(255, 255, 255);
 }
-
+.loader{
+    position: absolute;
+    top: 200px;
+}
 .back-arrow-photo-details {
     display: block;
     color: white;

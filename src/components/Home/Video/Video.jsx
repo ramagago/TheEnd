@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Video.css";
-import videoSource1 from "../../../media/films/trailerReelv1.mp4";
-import videoSource2 from "../../../media/films/trailerReelv2.mp4";
+import videoSource from "../../../media/films/trailerReelv1.mp4";
+// import videoSource2 from "../../../media/films/trailerReelv2.mp4";
 import logoPlay from "../../../media/icons/play2.png";
 import VideoModal from "./VideoModal";
 
 const Video = () => {
-  const [videoSource, setVideoSource] = useState(videoSource1);
+  const video = videoSource;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -41,31 +41,33 @@ const Video = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const mediaQueryList = window.matchMedia(
-      "(min-width: 768px) and (orientation: landscape)"
-    );
+  //// Esto era para que el video cambie el source segun si es un mobile o desktop
 
-    const handleMediaQueryChange = (e) => {
-      // Verificar si la consulta de medios coincide
-      if (e.matches) {
-        setVideoSource(videoSource1); // Origen del video para landscape y pantallas mayores a 768px
-      } else {
-        setVideoSource(videoSource2); // Origen del video para pantallas menores a 768px
-      }
-    };
+  // const [videoSource, setVideoSource] = useState(videoSource1);
+  // useEffect(() => {
+  //   const mediaQueryList = window.matchMedia(
+  //     "(min-width: 768px) and (orientation: landscape)"
+  //   );
+  //   const handleMediaQueryChange = (e) => {
+  //     // Verificar si la consulta de medios coincide
+  //     if (e.matches) {
+  //       setVideoSource(videoSource1); // Origen del video para landscape y pantallas mayores a 768px
+  //     } else {
+  //       setVideoSource(videoSource2); // Origen del video para pantallas menores a 768px
+  //     }
+  //   };
 
-    // Asignar el controlador de eventos para el cambio en la consulta de medios
-    mediaQueryList.addEventListener("change", handleMediaQueryChange);
+  //   // Asignar el controlador de eventos para el cambio en la consulta de medios
+  //   mediaQueryList.addEventListener("change", handleMediaQueryChange);
 
-    // Inicializar el origen del video según la consulta de medios actual
-    handleMediaQueryChange(mediaQueryList);
+  //   // Inicializar el origen del video según la consulta de medios actual
+  //   handleMediaQueryChange(mediaQueryList);
 
-    // Remover el controlador de eventos cuando el componente se desmonta
-    return () => {
-      mediaQueryList.removeEventListener("change", handleMediaQueryChange);
-    };
-  }, []);
+  //   // Remover el controlador de eventos cuando el componente se desmonta
+  //   return () => {
+  //     mediaQueryList.removeEventListener("change", handleMediaQueryChange);
+  //   };
+  // }, []);
 
   const calculateIconPosition = () => {
     if (mousePosition) {
@@ -94,7 +96,7 @@ const Video = () => {
         playsInline
         onClick={handleVideoClick}
       >
-        <source src={videoSource} type="video/mp4" />
+        <source src={video} type="video/mp4" />
         Tu navegador no admite el elemento de video.
       </video>
       {isHovered && (

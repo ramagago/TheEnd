@@ -3,16 +3,12 @@
     width: 100vw;
     flex-direction: column;
 }
-
 .img-container {
     position: relative;
     object-fit: cover;
     height: 100vh;
     max-width: 100%;
-    transition:0.7s;
-}
-.img-container:hover {
-    opacity: 0.9;
+    /* transition:0.7s; */
 }
 
 .img-category {
@@ -76,7 +72,6 @@
         object-fit: cover;
         height: 100%;
         max-width: calc(100% / 3);   
-        transition:0.5s;
         }
 
         .fashion {
@@ -108,7 +103,6 @@
     object-fit: cover;
     height: 100%;
     max-width: calc(100% / 3);   
-    transition:0.5s;
     }
 
     .fashion {

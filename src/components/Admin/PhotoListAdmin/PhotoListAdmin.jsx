@@ -10,6 +10,7 @@ import fetchPhotoList from "../../../utils/fetchPhotoList";
 import { auth, db, storage } from "../../../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import Loader from "../../Loader/Loader";
+import { motion, AnimatePresence } from "framer-motion";
 
 const PhotoListAdmin = () => {
   const history = useHistory();
@@ -65,7 +66,13 @@ const PhotoListAdmin = () => {
               {photos && (
                 <>
                   {photos.map((photo) => (
-                    <div key={photo.id} className="list-element">
+                    <motion.div
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.6 }}
+                      key={photo.id}
+                      className="list-element"
+                    >
                       <Link
                         to={`/PostEdit/${photo.id}/${photo.uuid}/${filter}`}
                         className="edit-link"
@@ -85,13 +92,19 @@ const PhotoListAdmin = () => {
                           onClick={() => handleDelete(photo.id, photo.uuid)}
                         />
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </>
               )}
             </>
           )}
-          {isPending && <Loader />}
+          <AnimatePresence>
+            {isPending && (
+              <motion.div exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
+                <Loader />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
       <div style={{ height: "75px", marginBottom: "15px" }}></div>

@@ -41,26 +41,15 @@
 .lifestyle {
     order:3
 }
-
-@media (min-width: 500px) and (max-width: 1023px) {
-    .fashion {
-        order: 3;
-    }
-    
-    .interior-design {
-        order: 2;
-    }
-    
-    .lifestyle {
-        order:1
-    }
-    .h2-categories {
-        bottom: 40px;
-    }  
+.loader-home{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-@media (orientation: landscape) {
 
-    /* Estilos para dispositivos en modo paisaje */
+
+@media (orientation: landscape) {
 
     .categories-container {   
         flex-direction: row;
@@ -91,7 +80,22 @@
   }
   
   /* Estilos para dispositivos con un ancho de pantalla de 769px a 1024px (ordenadores pequeños) */
-
+  @media (min-width: 500px) and (max-width: 1023px) {
+    .fashion {
+        order: 3;
+    }
+    
+    .interior-design {
+        order: 2;
+    }
+    
+    .lifestyle {
+        order:1
+    }
+    .h2-categories {
+        bottom: 40px;
+    }  
+}
 @media (min-width: 1024px) {  
     .categories-container {   
         flex-direction: row;

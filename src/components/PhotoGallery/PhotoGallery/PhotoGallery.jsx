@@ -21,7 +21,7 @@ const PhotoGallery = () => {
   useEffect(() => {
     fetchPhotoList(currentFilter, setPhotos, setIsPending, setError);
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   }, [currentFilter]);
 
   return (

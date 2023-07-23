@@ -8,6 +8,7 @@ import fetchPhotoList from "../../../utils/fetchPhotoList";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
+import { motion, AnimatePresence } from "framer-motion";
 
 const PhotoDetails = () => {
   const { uuid, currentFilter } = useParams();
@@ -22,7 +23,7 @@ const PhotoDetails = () => {
 
   useEffect(() => {
     fetchPhotoList(currentFilter, setPhotos, setIsPending, setError);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   }, [currentFilter]);
 
   return (
@@ -34,10 +35,25 @@ const PhotoDetails = () => {
         <FaArrowLeft />
       </Link>
       <div className="photo-details-container">
-        {isPending && <Loader />}
+        <AnimatePresence>
+          {isPending && (
+            <motion.div
+              className="loader"
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Loader />
+            </motion.div>
+          )}
+        </AnimatePresence>
         {error && <div>{error}</div>}
         {photo && (
-          <article className="photo-container">
+          <motion.article
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="photo-container"
+          >
             <img
               className="img-photo-details"
               src={photo.url}
@@ -113,17 +129,23 @@ const PhotoDetails = () => {
                 </p>
               )}
             </div>
-          </article>
+          </motion.article>
         )}
       </div>
 
       <div className="gap-photo-details-photo-list"></div>
-      <PhotoList
-        currentFilter={currentFilter}
-        isPending={isPending}
-        error={error}
-        photos={photos}
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        <PhotoList
+          currentFilter={currentFilter}
+          isPending={isPending}
+          error={error}
+          photos={photos}
+        />
+      </motion.div>
       <div style={{ widht: "100%", borderBottom: "solid 1px #57575761" }}></div>
       <Contact />
     </>

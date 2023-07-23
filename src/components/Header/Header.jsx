@@ -47,7 +47,7 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" }); // hacer un condicional si estoy en home va eso, sino no.
   }, [location]);
 
   const handleMenu = () => {

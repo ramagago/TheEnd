@@ -58,7 +58,11 @@ const Categories = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
-            whileHover={isTouchDevice ? {} : { opacity: 0.6 }}
+            whileHover={
+              isTouchDevice
+                ? {}
+                : { opacity: 0.6, transition: { delay: 0, duration: 0.3 } }
+            }
             className="img-container fashion"
           >
             <Link to="/PhotoList/fashion">
@@ -70,7 +74,11 @@ const Categories = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
-            whileHover={isTouchDevice ? {} : { opacity: 0.6 }}
+            whileHover={
+              isTouchDevice
+                ? {}
+                : { opacity: 0.6, transition: { delay: 0, duration: 0.3 } }
+            }
             whileTap={{ opacity: 0.6 }}
             className="img-container interior-design"
           >
@@ -85,7 +93,11 @@ const Categories = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            whileHover={isTouchDevice ? {} : { opacity: 0.6 }}
+            whileHover={
+              isTouchDevice
+                ? {}
+                : { opacity: 0.6, transition: { delay: 0, duration: 0.3 } }
+            }
             className="img-container lifestyle"
           >
             <Link to="/PhotoList/lifestyle">

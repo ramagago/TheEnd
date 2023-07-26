@@ -74,12 +74,6 @@
 
 
 @media (min-width: 1024px) {
-    .back-arrow-photo-details {
-        position: fixed;
-        top: 13px;
-        left:100px;
- 
-    }
 
     .photo-details-container {
         position: relative;
@@ -104,7 +98,8 @@
         height: 140px;
     }
     .back-arrow-photo-details {
-        color: rgb(0, 0, 0);
+        position: fixed;
+        color:#575757d2;
         background:none;
         top: 25px;
         left: 25px;

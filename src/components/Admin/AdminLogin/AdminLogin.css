@@ -41,6 +41,8 @@
     color: white;
     caret-color: white;
     border-bottom: 1px solid #ffffff;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
 .login-input:-webkit-autofill,

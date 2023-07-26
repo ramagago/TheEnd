@@ -3,6 +3,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import "./Header.css";
 import { auth } from "../../firebase";
 import { AiOutlineMenu } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const location = useLocation();
@@ -22,7 +23,6 @@ const Header = () => {
   const adminDark = isDarkBackground ? null : "admin-dark";
 
   const headerHide = isPhotoDetailsPage ? "header-hide" : null;
-
   const handleLogout = () => {
     auth
       .signOut()
@@ -47,7 +47,7 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" }); // hacer un condicional si estoy en home va eso, sino no.
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
 
   const handleMenu = () => {
@@ -58,7 +58,14 @@ const Header = () => {
     <>
       <div className={`header-container ${headerBgWhite} ${headerHide}`}>
         <Link to="/">
-          <h1 className={logoClassName}>THE END</h1>
+          <motion.h1
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className={logoClassName}
+          >
+            THE END
+          </motion.h1>
         </Link>
         {isUserLoggedIn && (
           <>

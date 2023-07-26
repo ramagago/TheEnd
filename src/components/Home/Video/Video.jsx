@@ -1,16 +1,42 @@
 import React, { useEffect, useState } from "react";
 import "./Video.css";
-import videoSource from "../../../media/films/trailerReelv1.mp4";
-// import videoSource2 from "../../../media/films/trailerReelv2.mp4";
-import logoPlay from "../../../media/icons/play2.png";
 import VideoModal from "./VideoModal";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../firebase";
+import { motion } from "framer-motion";
 
 const Video = () => {
-  const video = videoSource;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const iconSize = 100; // Tamaño del icono de reproducción
+
+  const [videoUrl, setVideoUrl] = useState(""); // Estado para almacenar la URL del video
+  const [playIconUrl, setPlayIconUrl] = useState(""); // Estado para almacenar la URL del icono de play
+
+  useEffect(() => {
+    const videoRef = ref(storage, "media/films/trailerReelv1.mp4");
+    const playIconRef = ref(storage, "media/icons/play2.png"); // Referencia al archivo del ícono en Storage
+
+    getDownloadURL(videoRef)
+      .then((url) => {
+        setVideoUrl(url);
+      })
+      .catch((error) => {
+        console.error("Error al obtener la URL del video:", error);
+      });
+
+    getDownloadURL(playIconRef)
+      .then((url) => {
+        setPlayIconUrl(url);
+      })
+      .catch((error) => {
+        console.error(
+          "Error al obtener la URL del icono de reproducción:",
+          error
+        );
+      });
+  }, []); // Se asegura de que se ejecute solo una vez al montar el componente
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -41,34 +67,6 @@ const Video = () => {
     };
   }, []);
 
-  //// Esto era para que el video cambie el source segun si es un mobile o desktop
-
-  // const [videoSource, setVideoSource] = useState(videoSource1);
-  // useEffect(() => {
-  //   const mediaQueryList = window.matchMedia(
-  //     "(min-width: 768px) and (orientation: landscape)"
-  //   );
-  //   const handleMediaQueryChange = (e) => {
-  //     // Verificar si la consulta de medios coincide
-  //     if (e.matches) {
-  //       setVideoSource(videoSource1); // Origen del video para landscape y pantallas mayores a 768px
-  //     } else {
-  //       setVideoSource(videoSource2); // Origen del video para pantallas menores a 768px
-  //     }
-  //   };
-
-  //   // Asignar el controlador de eventos para el cambio en la consulta de medios
-  //   mediaQueryList.addEventListener("change", handleMediaQueryChange);
-
-  //   // Inicializar el origen del video según la consulta de medios actual
-  //   handleMediaQueryChange(mediaQueryList);
-
-  //   // Remover el controlador de eventos cuando el componente se desmonta
-  //   return () => {
-  //     mediaQueryList.removeEventListener("change", handleMediaQueryChange);
-  //   };
-  // }, []);
-
   const calculateIconPosition = () => {
     if (mousePosition) {
       const offsetX = -(iconSize / 2);
@@ -83,7 +81,10 @@ const Video = () => {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
       className={`video-container ${isHovered ? "cursor-hidden" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -96,19 +97,19 @@ const Video = () => {
         playsInline
         onClick={handleVideoClick}
       >
-        <source src={video} type="video/mp4" />
+        {videoUrl && <source src={videoUrl} type="video/mp4" />}
         Tu navegador no admite el elemento de video.
       </video>
       {isHovered && (
         <img
-          src={logoPlay}
+          src={playIconUrl}
           style={calculateIconPosition()}
           className="img-play"
           alt="Logo Play"
         />
       )}
       {isModalOpen && <VideoModal handleCloseModal={handleCloseModal} />}
-    </div>
+    </motion.div>
   );
 };
 

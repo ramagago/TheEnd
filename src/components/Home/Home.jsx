@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import Categories from "./Categories/Categories";
 import Contact from "./Contact/Contact";
 import Video from "./Video/Video";
-import LoaderHome from "../Loader/LoaderHome";
 
 const Home = () => {
-  const [isPending, setIsPending] = useState(true);
-  const [start, setStart] = useState(false);
-
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsPending(false);
-      setStart(true);
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-
   return (
     <div className="home">
-      {isPending && <LoaderHome />}
-      <div>{start && <Categories />}</div>
-      <div>{start && <Video />}</div>
-      <div>{start && <Contact />}</div>
+      <div>
+        <Categories />
+      </div>
+      <div>
+        <Video />
+      </div>
+      <div>
+        <Contact />
+      </div>
     </div>
   );
 };
-
 export default Home;

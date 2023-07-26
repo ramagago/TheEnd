@@ -6,7 +6,6 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import LoaderHome from "../../Loader/LoaderHome";
 
 const Categories = () => {
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [foto, setFoto] = useState("");
   const [foto2, setFoto2] = useState("");
   const [foto3, setFoto3] = useState("");
@@ -34,10 +33,7 @@ const Categories = () => {
       .catch((error) => {
         console.error("Error loading images:", error);
       });
-
-    const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints;
-    setIsTouchDevice(isTouch);
-  }, []);
+  });
   return (
     <>
       <AnimatePresence>
@@ -45,72 +41,74 @@ const Categories = () => {
           <motion.div
             className="loader-home"
             exit={{ opacity: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0 }}
           >
             {" "}
             <LoaderHome />
           </motion.div>
         )}
       </AnimatePresence>
-      {!isPending && (
-        <div className="categories-container">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            whileHover={
-              isTouchDevice
-                ? {}
-                : { opacity: 0.6, transition: { delay: 0, duration: 0.3 } }
-            }
-            className="img-container fashion"
-          >
-            <Link to="/PhotoList/fashion">
-              <h2 className="h2-categories h2-fashion">Fashion</h2>
-              <img className="img-category" src={foto} alt="Fashion" />
-            </Link>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            whileHover={
-              isTouchDevice
-                ? {}
-                : { opacity: 0.6, transition: { delay: 0, duration: 0.3 } }
-            }
-            whileTap={{ opacity: 0.6 }}
-            className="img-container interior-design"
-          >
-            <Link to="/PhotoList/interiorDesign">
-              <h2 className="h2-categories h2-interior-design">
-                Interior Design
-              </h2>
-              <img className="img-category" src={foto2} alt="Interior Design" />
-            </Link>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            whileHover={
-              isTouchDevice
-                ? {}
-                : { opacity: 0.6, transition: { delay: 0, duration: 0.3 } }
-            }
-            className="img-container lifestyle"
-          >
-            <Link to="/PhotoList/lifestyle">
-              <img
-                className="img-category h2-lifestyle"
-                src={foto3}
-                alt="Lifestyle"
-              />
-              <h2 className="h2-categories">Lifestyle</h2>
-            </Link>
-          </motion.div>
-        </div>
-      )}
+      <AnimatePresence>
+        {!isPending && (
+          <div className="categories-container">
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.5, delay: 0.5 },
+              }}
+              className="img-container fashion"
+            >
+              <Link to="/PhotoList/fashion">
+                <img className="img-category" src={foto} alt="Fashion" />{" "}
+                <h2 className="h2-categories h2-fashion">Fashion</h2>
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.5, delay: 0.5 },
+              }}
+              className="img-container interior-design"
+            >
+              <Link to="/PhotoList/interiorDesign">
+                <img
+                  className="img-category"
+                  src={foto2}
+                  alt="Interior Design"
+                />{" "}
+                <h2 className="h2-categories h2-interior-design">
+                  Interior Design
+                </h2>
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.5, delay: 0.5 },
+              }}
+              className="img-container lifestyle"
+            >
+              <Link to="/PhotoList/lifestyle">
+                <img
+                  className="img-category h2-lifestyle"
+                  src={foto3}
+                  alt="Lifestyle"
+                />
+                <h2 className="h2-categories">Lifestyle</h2>
+              </Link>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

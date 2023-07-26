@@ -11,6 +11,7 @@ import Loader from "../../Loader/Loader";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PhotoDetails = () => {
+
   const { uuid, currentFilter } = useParams();
   const [photo, setPhoto] = useState(null);
   const [photos, setPhotos] = useState([]);
@@ -23,7 +24,6 @@ const PhotoDetails = () => {
 
   useEffect(() => {
     fetchPhotoList(currentFilter, setPhotos, setIsPending, setError);
-    window.scrollTo({ top: 0 });
   }, [currentFilter]);
 
   return (

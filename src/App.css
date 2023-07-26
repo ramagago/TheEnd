@@ -3,8 +3,8 @@
   margin: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* background-color: white; */
 }
-
 
 html, body {
   transition: scroll-behavior 0.3s ease-in-out;

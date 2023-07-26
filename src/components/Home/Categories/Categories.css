@@ -8,13 +8,13 @@
     object-fit: cover;
     height: 100vh;
     max-width: 100%;
-    /* transition:0.7s; */
 }
 
 .img-category {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: 0.5s;
 }
 
 .h2-categories {
@@ -41,8 +41,11 @@
 .lifestyle {
     order:3
 }
+
 .loader-home{
+
     height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;

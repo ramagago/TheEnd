@@ -9,8 +9,10 @@ const fetchPhotoDetails = async (uuid, setPhoto, setError, setIsPending) => {
     if (!querySnapshot.empty) {
       const docData = querySnapshot.docs[0].data();
       setPhoto({ id: uuid, ...docData });
+      window.scrollTo({ top: 0 });
     } else {
       setError("Photo not found");
+      window.scrollTo({ top: 0 });
     }
     setIsPending(false);
   } catch (error) {

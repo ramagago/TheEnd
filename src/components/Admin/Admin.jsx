@@ -8,13 +8,11 @@ const Admin = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (!user) {
-        history.push("/AdminLogin"); // Redirige al componente AdminLogin si no hay usuario loggeado
-      }
-    });
+    const unsubscribe = auth.onAuthStateChanged(
+      (user) => !user && history.push("/admin-login")
+    );
 
-    return () => unsubscribe();
+    return unsubscribe;
   }, [history]);
 
   return (
@@ -22,10 +20,10 @@ const Admin = () => {
       <Link to="/" className="back-arrow-admin">
         <FaArrowLeft />
       </Link>
-      <Link className="btn" to="/CategoriesAdmin">
+      <Link className="btn" to="/categories-admin">
         Edit
       </Link>
-      <Link className="btn" to="/Post">
+      <Link className="btn" to="/post">
         Upload
       </Link>
     </div>

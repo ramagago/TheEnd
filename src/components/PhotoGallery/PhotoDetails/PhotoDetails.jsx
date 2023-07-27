@@ -11,7 +11,6 @@ import Loader from "../../Loader/Loader";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PhotoDetails = () => {
-
   const { uuid, currentFilter } = useParams();
   const [photo, setPhoto] = useState(null);
   const [photos, setPhotos] = useState([]);
@@ -19,17 +18,23 @@ const PhotoDetails = () => {
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    fetchPhotoDetails(uuid, setPhoto, setError, setIsPending);
+    const fetchDetails = async () => {
+      await fetchPhotoDetails(uuid, setPhoto, setError, setIsPending);
+    };
+    fetchDetails();
   }, [uuid]);
 
   useEffect(() => {
-    fetchPhotoList(currentFilter, setPhotos, setIsPending, setError);
+    const fetchList = async () => {
+      await fetchPhotoList(currentFilter, setPhotos, setIsPending, setError);
+    };
+    fetchList();
   }, [currentFilter]);
 
   return (
     <>
       <Link
-        to={`/PhotoList/${currentFilter}`}
+        to={`/photo-list/${currentFilter}`}
         className="back-arrow-photo-details"
       >
         <FaArrowLeft />

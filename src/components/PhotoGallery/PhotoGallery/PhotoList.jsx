@@ -29,7 +29,7 @@ const PhotoList = ({ currentFilter, isPending, error, photos }) => {
               className="photo-list-link"
               key={photo.uuid}
             >
-              <Link to={`/PhotoDetails/${photo.uuid}/${currentFilter}`}>
+              <Link to={`/photo-details/${photo.uuid}/${currentFilter}`}>
                 <img className="photo" src={photo.url} alt={photo.title} />
               </Link>
             </motion.div>

@@ -12,13 +12,10 @@ const Post = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (!user) {
-        history.push("/AdminLogin"); // Redirige al componente AdminLogin si no hay usuario loggeado
-      }
-    });
-
-    return () => unsubscribe();
+    const unsubscribe = auth.onAuthStateChanged(
+      (user) => !user && history.push("/admin-login")
+    );
+    return unsubscribe;
   }, [history]);
 
   const [isUploading, setIsUploading] = useState(false);
@@ -45,65 +42,59 @@ const Post = () => {
     return () => clearTimeout(timeout);
   }, [uploaded]);
 
-  const handleUpload = (e) => {
+  const handleUpload = async (e) => {
     e.preventDefault();
-
     if (!imageUpload) return;
+
     setUploaded(false);
     setIsUploading(true);
     const imageId = v4();
     const imageRef = ref(storage, `images/${imageId}`);
 
-    uploadBytes(imageRef, imageUpload)
-      .then((snapshot) => {
-        return getDownloadURL(snapshot.ref);
-      })
-      .then((url) => {
-        const newPost = {
-          title,
-          uuid: imageId,
-          location, //SI SE LLANMA IGUAL NO ES NECESARIO PONER LOCATION:LOCATION
-          locationLink: locationLink,
-          category: category,
-          brand: brand,
-          brandLink: brandLink,
-          model: model,
-          modelLink: modelLink,
-          makeup: makeup,
-          makeupLink: makeupLink,
-          url,
-          order: Date.now(),
-        };
+    try {
+      const snapshot = await uploadBytes(imageRef, imageUpload);
+      const url = await getDownloadURL(snapshot.ref);
 
-        const photosCollectionRef = collection(db, "photos");
-        addDoc(photosCollectionRef, newPost)
-          .then(() => {
-            setIsUploading(false);
-            setUploaded(true);
-            setTitle("");
-            setLocation("");
-            setLocationLink("");
-            setBrand("");
-            setBrandLink("");
-            setModel("");
-            setModelLink("");
-            setMakeup("");
-            setMakeupLink("");
-            setCategory("fashion");
-            setImageUpload(null);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      const newPost = {
+        title,
+        uuid: imageId,
+        location,
+        locationLink,
+        category,
+        brand,
+        brandLink,
+        model,
+        modelLink,
+        makeup,
+        makeupLink,
+        url,
+        order: Date.now(),
+      };
+
+      const photosCollectionRef = collection(db, "photos");
+      await addDoc(photosCollectionRef, newPost);
+
+      setIsUploading(false);
+      setUploaded(true);
+      setTitle("");
+      setLocation("");
+      setLocationLink("");
+      setBrand("");
+      setBrandLink("");
+      setModel("");
+      setModelLink("");
+      setMakeup("");
+      setMakeupLink("");
+      setCategory("fashion");
+      setImageUpload(null);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
-      <Link to="/Admin" className="back-arrow-post">
+      <Link to="/admin" className="back-arrow-post">
         <FaArrowLeft />
       </Link>
       <div style={{ height: "75px", marginBottom: "15px" }}></div>

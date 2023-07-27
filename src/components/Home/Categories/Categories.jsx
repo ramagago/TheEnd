@@ -19,21 +19,26 @@ const Categories = () => {
   };
 
   useEffect(() => {
-    Promise.all([
-      getFirebaseImage("fashionCover2.jpg"),
-      getFirebaseImage("interiorDesignCover.jpeg"),
-      getFirebaseImage("Lifestyle Cover.jpeg"),
-    ])
-      .then(([url1, url2, url3]) => {
+    const fetchData = async () => {
+      try {
+        const [url1, url2, url3] = await Promise.all([
+          getFirebaseImage("fashionCover2.jpg"),
+          getFirebaseImage("interiorDesignCover.jpeg"),
+          getFirebaseImage("Lifestyle Cover.jpeg"),
+        ]);
+
         setFoto(url1);
         setFoto2(url2);
         setFoto3(url3);
         setIsPending(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error loading images:", error);
-      });
-  });
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <AnimatePresence>
@@ -61,9 +66,12 @@ const Categories = () => {
               }}
               className="img-container fashion"
             >
-              <Link to="/PhotoList/fashion">
+              <Link to="/photo-list/fashion">
                 <img className="img-category" src={foto} alt="Fashion" />{" "}
-                <h2 className="h2-categories h2-fashion">Fashion</h2>
+                <h2 className="h2-categories h2-fashion">
+                  {" "}
+                  <span style={{ textDecoration: "underline" }}>Fashion</span> →
+                </h2>
               </Link>
             </motion.div>
             <motion.div
@@ -76,14 +84,17 @@ const Categories = () => {
               }}
               className="img-container interior-design"
             >
-              <Link to="/PhotoList/interiorDesign">
+              <Link to="/photo-list/interiorDesign">
                 <img
                   className="img-category"
                   src={foto2}
                   alt="Interior Design"
                 />{" "}
                 <h2 className="h2-categories h2-interior-design">
-                  Interior Design
+                  <span style={{ textDecoration: "underline" }}>
+                    Interior Design
+                  </span>{" "}
+                  →
                 </h2>
               </Link>
             </motion.div>
@@ -97,13 +108,16 @@ const Categories = () => {
               }}
               className="img-container lifestyle"
             >
-              <Link to="/PhotoList/lifestyle">
+              <Link to="/photo-list/lifestyle">
                 <img
                   className="img-category h2-lifestyle"
                   src={foto3}
                   alt="Lifestyle"
                 />
-                <h2 className="h2-categories">Lifestyle</h2>
+                <h2 className="h2-categories">
+                  <span style={{ textDecoration: "underline" }}>Lifestyle</span>{" "}
+                  →
+                </h2>
               </Link>
             </motion.div>
           </div>

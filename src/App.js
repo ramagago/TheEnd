@@ -21,28 +21,28 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/PhotoList/:filter">
+          <Route path="/photo-list/:filter">
             <PhotoGallery />
           </Route>
-          <Route path="/Post">
+          <Route path="/post">
             <Post />
           </Route>
-          <Route path="/Admin">
+          <Route path="/admin">
             <Admin />
           </Route>
-          <Route path="/CategoriesAdmin">
+          <Route path="/categories-admin">
             <CategoriesAdmin />
           </Route>
-          <Route path="/PhotoListAdmin/:filter">
+          <Route path="/photo-list-admin/:filter">
             <PhotoListAdmin />
           </Route>
-          <Route path="/PostEdit/:id/:uuid/:filter">
+          <Route path="/post-edit/:id/:uuid/:filter">
             <PostEdit />
           </Route>
-          <Route path="/PhotoDetails/:uuid/:currentFilter">
+          <Route path="/photo-details/:uuid/:currentFilter">
             <PhotoDetails />
           </Route>
-          <Route path="/AdminLogin">
+          <Route path="/admin-login">
             <AdminLogin />
           </Route>
           <Route path="*">

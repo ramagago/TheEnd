@@ -7,69 +7,38 @@ import { motion } from "framer-motion";
 
 const Video = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
   const [playIconUrl, setPlayIconUrl] = useState("");
-  const iconSize = 100;
 
   useEffect(() => {
-    const videoRef = ref(storage, "media/films/trailerReelv1.mp4");
-    const playIconRef = ref(storage, "media/icons/play2.png");
+    const fetchUrls = async () => {
+      const videoRef = ref(storage, "media/films/trailerReelv1.mp4");
+      const playIconRef = ref(storage, "media/icons/play100x100.png");
 
-    getDownloadURL(videoRef)
-      .then((url) => {
-        setVideoUrl(url);
-      })
-      .catch((error) => {
+      try {
+        const videoUrl = await getDownloadURL(videoRef);
+        setVideoUrl(videoUrl);
+      } catch (error) {
         console.error("Error al obtener la URL del video:", error);
-      });
+      }
 
-    getDownloadURL(playIconRef)
-      .then((url) => {
-        setPlayIconUrl(url);
-      })
-      .catch((error) => {
+      try {
+        const playIconUrl = await getDownloadURL(playIconRef);
+        setPlayIconUrl(playIconUrl);
+      } catch (error) {
         console.error(
           "Error al obtener la URL del icono de reproducción:",
           error
         );
-      });
+      }
+    };
+
+    fetchUrls();
   }, []);
 
   const handleCloseModal = () => setIsModalOpen(false);
-
-  const handleMouseMove = (e) =>
-    setMousePosition({ x: e.clientX, y: e.clientY });
-
-  const handleMouseEnter = () => setIsHovered(true);
-
-  const handleMouseLeave = () => setIsHovered(false);
-
   const handleVideoClick = () => {
     setIsModalOpen(true);
-    setIsHovered(false);
-  };
-
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  const calculateIconPosition = () => {
-    if (mousePosition) {
-      const offsetX = -(iconSize / 2);
-      const offsetY = -(iconSize / 2);
-      const container = document.querySelector(".video-container");
-      const containerRect = container.getBoundingClientRect();
-      const positionX = mousePosition.x - containerRect.left + offsetX;
-      const positionY = mousePosition.y - containerRect.top + offsetY;
-      return { left: `${positionX}px`, top: `${positionY}px` };
-    }
-    return null;
   };
 
   return (
@@ -77,11 +46,10 @@ const Video = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`video-container ${isHovered ? "cursor-hidden" : ""}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className="video-container"
     >
       <video
+        style={{ cursor: `url('${playIconUrl}'), auto` }}
         className="video"
         autoPlay
         loop
@@ -92,14 +60,6 @@ const Video = () => {
         {videoUrl && <source src={videoUrl} type="video/mp4" />}
         Tu navegador no admite el elemento de video.
       </video>
-      {isHovered && (
-        <img
-          src={playIconUrl}
-          style={calculateIconPosition()}
-          className="img-play"
-          alt="Logo Play"
-        />
-      )}
       {isModalOpen && <VideoModal handleCloseModal={handleCloseModal} />}
     </motion.div>
   );

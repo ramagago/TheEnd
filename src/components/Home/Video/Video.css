@@ -7,6 +7,8 @@
   align-items: center;
   background-color: black;
   overflow: hidden;
+  transition: 0.5s;
+
 }
 
 .video {
@@ -16,15 +18,16 @@
   filter: grayscale(40%);
   transition: 0.5s;
 }
-  .img-play {
-    display: none;
-  }
 
+.img-play {
+  display: none;
+}
 
 @media (min-width: 1024px) {
-  .video-container{
+  .video-container {
     height: 100vh;
   }
+
   .video:hover {
     opacity: 0.5;
     transform: scale(1.01);
@@ -37,9 +40,4 @@
     pointer-events: none;
     transition: left 0.05s ease, top 0.05s ease;
   }
-  
-  .cursor-hidden {
-    cursor: none;
-  }
-
 }

@@ -107,6 +107,6 @@
         transition: .3s;
     }.back-arrow-photo-details:hover {
         background:none;
-transform: scale(1.2);
+        transform: scale(1.2);
     }
   }

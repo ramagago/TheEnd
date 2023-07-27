@@ -1,5 +1,5 @@
 .video-container {
-  position: relative; /* Añadido para que el ícono de reproducción esté posicionado correctamente */
+  position: relative;
   width: 100vw;
   height: 60vh;
   display: flex;

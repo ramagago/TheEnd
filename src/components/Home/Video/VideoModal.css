@@ -36,7 +36,7 @@
 .modal-content iframe {
     order:2;
     width: 100%;
-    aspect-ratio: 16/9; /* Proporción de aspecto 16:9 */
+    aspect-ratio: 16/9;
     border: none;
 }
 

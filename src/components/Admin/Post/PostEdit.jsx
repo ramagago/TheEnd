@@ -14,15 +14,12 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const PostEdit = () => {
   const history = useHistory();
-
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (!user) {
-        history.push("/AdminLogin"); // Redirige al componente AdminLogin si no hay usuario loggeado
-      }
-    });
+    const unsubscribe = auth.onAuthStateChanged(
+      (user) => !user && history.push("/admin-login")
+    );
 
-    return () => unsubscribe();
+    return unsubscribe;
   }, [history]);
 
   const { id, uuid, filter } = useParams();
@@ -72,28 +69,24 @@ const PostEdit = () => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-
     setUploaded(false);
     setIsUploading(true);
-
     const imageId = uuid;
     const imageRef = ref(storage, `images/${imageId}`);
 
-    // Si no hay una nueva imagen seleccionada, simplemente actualiza los datos sin subir una imagen nueva
-
     if (!imageUpload) {
       const updatedData = {
-        title: title,
-        location: location,
-        locationLink: locationLink,
-        category: category,
-        brand: brand,
-        brandLink: brandLink,
-        model: model,
-        modelLink: modelLink,
-        makeup: makeup,
-        makeupLink: makeupLink,
-        url: post.url, // Mantén la misma URL de la imagen anterior
+        title,
+        location,
+        locationLink,
+        category,
+        brand,
+        brandLink,
+        model,
+        modelLink,
+        makeup,
+        makeupLink,
+        url: post.url,
       };
 
       try {
@@ -115,17 +108,11 @@ const PostEdit = () => {
         console.log(error);
       }
     } else {
-      // Si hay una nueva imagen seleccionada, realiza el proceso de carga de la imagen y actualización de datos
-
-      // Elimina la imagen anterior de Firebase Storage
       const previousImageRef = ref(storage, `images/${imageId}`);
       try {
         await deleteObject(previousImageRef);
-
-        // Sube la nueva imagen a Firebase Storage
         const snapshot = await uploadBytes(imageRef, imageUpload);
         const url = await getDownloadURL(snapshot.ref);
-
         const updatedData = {
           title: title,
           location: location,
@@ -139,7 +126,6 @@ const PostEdit = () => {
           makeupLink: makeupLink,
           url: url,
         };
-        // Actualizar los datos en Firestore
         try {
           await updateDoc(doc(db, "photos", id), updatedData);
           setIsUploading(false);
@@ -155,7 +141,7 @@ const PostEdit = () => {
 
   return (
     <div className="post-container">
-      <Link to={`/PhotoListAdmin/${filter}`} className="back-arrow-post">
+      <Link to={`/photo-list-admin/${filter}`} className="back-arrow-post">
         <FaArrowLeft />
       </Link>
       <div style={{ height: "75px", marginBottom: "15px" }}></div>

@@ -9,11 +9,12 @@ const Header = () => {
   const location = useLocation();
   const history = useHistory();
   const isHome = location.pathname === "/";
-  const isAdmin = location.pathname === "/Admin";
-  const isCategoryAdmin = location.pathname === "/CategoriesAdmin";
-  const isAdminLogin = location.pathname === "/AdminLogin";
-  const isPhotoDetailsPage = location.pathname.includes("/PhotoDetails");
+  const isAdmin = location.pathname === "/admin";
+  const isCategoryAdmin = location.pathname === "/categories-admin";
+  const isAdminLogin = location.pathname === "/admin-login";
+  const isPhotoDetailsPage = location.pathname.includes("/photo-details");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   const isDarkBackground =
     isHome || isAdmin || isCategoryAdmin || isAdminLogin ? true : false;
@@ -21,23 +22,18 @@ const Header = () => {
   const logoClassName = isDarkBackground ? "logo-class-1" : "logo-class-2";
   const headerBgWhite = isDarkBackground ? null : "header-bg-white";
   const adminDark = isDarkBackground ? null : "admin-dark";
-
   const headerHide = isPhotoDetailsPage ? "header-hide" : null;
-  const handleLogout = () => {
-    auth
-      .signOut()
-      .then(() => {
-        console.log("cerraste sesion");
-        // Redirigir al inicio después de cerrar sesión
-        history.push("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      console.log("cerraste sesion");
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
     setIsMenuOpen(false);
   };
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -50,10 +46,9 @@ const Header = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
 
-  const handleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const handleMenu = () => setIsMenuOpen(!isMenuOpen);
   const dropdown = isMenuOpen ? "menu-dropdown-down" : null;
+
   return (
     <>
       <div className={`header-container ${headerBgWhite} ${headerHide}`}>
@@ -75,7 +70,7 @@ const Header = () => {
                 onClick={handleMenu}
               />
             )}
-            <Link className={`admin-btn-desktop ${adminDark}`} to="/Admin">
+            <Link className={`admin-btn-desktop ${adminDark}`} to="/admin">
               Admin
             </Link>
             <button
@@ -87,19 +82,17 @@ const Header = () => {
           </>
         )}
       </div>
-      {/* {isMenuOpen && ( */}
       <div className={`menu-dropdown ${dropdown}`}>
         <button className="close-menu" onClick={handleMenu}>
           X
         </button>
-        <Link className={`btn-mobile`} onClick={handleMenu} to="/Admin">
+        <Link className={`btn-mobile`} onClick={handleMenu} to="/admin">
           Admin
         </Link>
         <button className={`btn-mobile`} onClick={handleLogout}>
           Logout
         </button>
       </div>
-      {/* )} */}
     </>
   );
 };

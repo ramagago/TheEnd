@@ -9,14 +9,13 @@ const Video = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  const iconSize = 100; // Tamaño del icono de reproducción
-
-  const [videoUrl, setVideoUrl] = useState(""); // Estado para almacenar la URL del video
-  const [playIconUrl, setPlayIconUrl] = useState(""); // Estado para almacenar la URL del icono de play
+  const [videoUrl, setVideoUrl] = useState("");
+  const [playIconUrl, setPlayIconUrl] = useState("");
+  const iconSize = 100;
 
   useEffect(() => {
     const videoRef = ref(storage, "media/films/trailerReelv1.mp4");
-    const playIconRef = ref(storage, "media/icons/play2.png"); // Referencia al archivo del ícono en Storage
+    const playIconRef = ref(storage, "media/icons/play2.png");
 
     getDownloadURL(videoRef)
       .then((url) => {
@@ -36,23 +35,16 @@ const Video = () => {
           error
         );
       });
-  }, []); // Se asegura de que se ejecute solo una vez al montar el componente
+  }, []);
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e) =>
     setMousePosition({ x: e.clientX, y: e.clientY });
-  };
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
+  const handleMouseEnter = () => setIsHovered(true);
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+  const handleMouseLeave = () => setIsHovered(false);
 
   const handleVideoClick = () => {
     setIsModalOpen(true);

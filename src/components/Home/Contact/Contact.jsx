@@ -17,40 +17,32 @@ export const Contact = () => {
     textarea.style.height = scrollHeight + "px";
   }, [message]);
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     setIsSending(true);
-    emailjs
-      .sendForm(
+
+    try {
+      await emailjs.sendForm(
         "service_lm9511m",
         "template_18melvg",
         form.current,
         "pF3U48UNWJxuoR0y5"
-      )
-      .then(
-        (result) => {
-          setEmailSent(true);
-          setIsSending(false);
-          form.current.reset();
-        },
-        (error) => {
-          setErrorEmail(true);
-          setIsSending(false);
-          form.current.reset();
-        }
       );
+      setEmailSent(true);
+    } catch (error) {
+      setErrorEmail(true);
+    } finally {
+      setIsSending(false);
+      form.current.reset();
+    }
   };
 
   useEffect(() => {
     let timeout;
     if (emailSent) {
-      timeout = setTimeout(() => {
-        setEmailSent(false);
-      }, 3000);
+      timeout = setTimeout(() => setEmailSent(false), 3000);
     } else if (errorEmail) {
-      timeout = setTimeout(() => {
-        setEmailSent(false);
-      }, 3000);
+      timeout = setTimeout(() => setEmailSent(false), 3000);
     }
     return () => clearTimeout(timeout);
   }, [emailSent, errorEmail]);

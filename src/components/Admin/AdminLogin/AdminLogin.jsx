@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth"; // Importa la función 'signInWithEmailAndPassword' del módulo 'auth'
-import { auth } from "../../../firebase"; // Asegúrate de importar el objeto 'auth' desde tu archivo 'firebase'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase";
 import { useHistory } from "react-router-dom";
 import "./AdminLogin.css";
 
@@ -10,16 +10,15 @@ const AdminLogin = () => {
   const [error, setError] = useState(null);
   const history = useHistory();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     document.body.style.zoom = "1";
-    signInWithEmailAndPassword(auth, email, password) // Utiliza la función 'signInWithEmailAndPassword' pasando el objeto 'auth' como primer argumento
-      .then((cred) => {
-        history.push("/Admin");
-      })
-      .catch((error) => {
-        setError(true);
-      });
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      history.push("/admin");
+    } catch (error) {
+      setError(true);
+    }
   };
 
   return (

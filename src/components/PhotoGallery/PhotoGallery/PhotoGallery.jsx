@@ -15,12 +15,10 @@ const PhotoGallery = () => {
   const [photos, setPhotos] = useState([]);
   const [currentFilter, setCurrentFilter] = useState(filter);
 
-  const handleClick = (newFilter) => {
-    setCurrentFilter(newFilter);
-  };
+  const handleClick = (newFilter) => setCurrentFilter(newFilter);
+
   useEffect(() => {
     fetchPhotoList(currentFilter, setPhotos, setIsPending, setError);
-
     window.scrollTo({ top: 0 });
   }, [currentFilter]);
 
@@ -33,19 +31,14 @@ const PhotoGallery = () => {
         currentFilter={currentFilter}
         handleClick={handleClick}
       />
-
-      {/* GAP for the header */}
       <div style={{ height: "135px" }}></div>
-
       <PhotoList
         currentFilter={currentFilter}
         isPending={isPending}
         error={error}
         photos={photos}
       />
-
       <div style={{ widht: "100%", borderBottom: "solid 1px #57575761" }}></div>
-
       <Contact />
     </div>
   );

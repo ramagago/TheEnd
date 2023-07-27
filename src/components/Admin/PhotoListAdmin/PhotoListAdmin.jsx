@@ -14,25 +14,22 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const PhotoListAdmin = () => {
   const history = useHistory();
+  const { filter } = useParams();
+  const [photos, setPhotos] = useState([]);
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
-        history.push("/AdminLogin"); // Redirige al componente AdminLogin si no hay usuario loggeado
+        history.push("/admin-login");
       }
     });
-
-    return () => unsubscribe();
+    return unsubscribe;
   }, [history]);
-
-  const { filter } = useParams();
-  const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(true);
-  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     fetchPhotoList(filter, setPhotos, setIsPending, setError);
-
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [filter]);
 
@@ -40,11 +37,7 @@ const PhotoListAdmin = () => {
     const imageRef = ref(storage, `/images/${photoUuid}`);
     try {
       await deleteObject(imageRef);
-
-      // Eliminar el documento de la colección "photos"
       await deleteDoc(doc(db, "photos", photoId));
-
-      // Actualizar el estado eliminando la foto
       setPhotos(photos.filter((photo) => photo.id !== photoId));
     } catch (error) {
       console.log(error);
@@ -53,7 +46,7 @@ const PhotoListAdmin = () => {
 
   return (
     <>
-      <Link to="/CategoriesAdmin" className="back-arrow-post">
+      <Link to="/categories-admin" className="back-arrow-post">
         <FaArrowLeft />
       </Link>
       <div style={{ height: "75px", marginBottom: "15px" }}></div>
@@ -74,7 +67,7 @@ const PhotoListAdmin = () => {
                       className="list-element"
                     >
                       <Link
-                        to={`/PostEdit/${photo.id}/${photo.uuid}/${filter}`}
+                        to={`/post-edit/${photo.id}/${photo.uuid}/${filter}`}
                         className="edit-link"
                       >
                         <img

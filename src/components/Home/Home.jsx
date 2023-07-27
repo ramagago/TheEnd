@@ -5,9 +5,9 @@ import Contact from "./Contact/Contact";
 import Video from "./Video/Video";
 
 const Home = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  
+  useEffect(() => window.scrollTo({ top: 0, behavior: "smooth" }), []);
+  
   return (
     <div className="home">
       <div>

@@ -23,6 +23,12 @@
   display: none;
 }
 
+@media (orientation: landscape) {
+  .video-container {
+    height: 100vh;
+  }
+}
+
 @media (min-width: 1024px) {
   .video-container {
     height: 100vh;

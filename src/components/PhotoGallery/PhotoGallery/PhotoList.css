@@ -44,7 +44,7 @@
 
 @media (orientation: landscape) {
   .photo-list {
-    columns: 4 200px;
+    columns: 4 100px;
   }
 }
 

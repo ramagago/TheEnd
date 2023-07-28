@@ -1,18 +1,28 @@
 import "./VideoModal.css";
+import { motion } from "framer-motion";
 
 const VideoModal = ({ handleCloseModal }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <iframe
-          src="https://www.youtube.com/embed/MwYawqnHavI"
+        <motion.iframe
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          src="https://www.youtube.com/embed/RJUf85ILvnk"
           title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        ></iframe>
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></motion.iframe>
         <div className="btn-x-container">
-          <button className="close-button" onClick={handleCloseModal}>
+          <motion.button
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.2 }}
+            className="close-button"
+            onClick={handleCloseModal}
+          >
             X
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>

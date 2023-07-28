@@ -69,8 +69,43 @@
 .gap-photo-details-photo-list {
     height: 30px;
 }
-/* @media (orientation: landscape) {}
-@media (min-width: 500px) and (max-width: 1023px) {} */
+@media (orientation: landscape) {
+    .photo-details-container {
+        position: relative;
+        top: 100px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        max-height: 90%;
+    }
+    .photo-container {
+        flex-direction: row;
+        width: 70%;
+        border-radius: 30px;
+    }
+
+    .img-photo-details {
+        border-radius: 30px 0 0 30px;
+        width: 400px;
+    }
+
+    .gap-photo-details-photo-list {
+        height: 140px;
+    }
+    .back-arrow-photo-details {
+        position: fixed;
+        color:#575757d2;
+        background:none;
+        top: 25px;
+        left: 25px;
+        font-size: 20px;
+        transition: .3s;
+    }.back-arrow-photo-details:hover {
+        background:none;
+        transform: scale(1.2);
+    }
+}
+
 
 
 @media (min-width: 1024px) {

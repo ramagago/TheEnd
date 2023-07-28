@@ -23,8 +23,8 @@ const Categories = () => {
       try {
         const [url1, url2, url3] = await Promise.all([
           getFirebaseImage("fashionCover2.jpg"),
-          getFirebaseImage("interiorDesignCover.jpeg"),
-          getFirebaseImage("Lifestyle Cover.jpeg"),
+          getFirebaseImage("interior-design-cover.jpg"),
+          getFirebaseImage("lifestyle-cover.jpg"),
         ]);
 
         setFoto(url1);
